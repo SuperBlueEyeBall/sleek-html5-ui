@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&#8204;</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Titan+One');
+    @import url('https://fonts.googleapis.com/css?family=Nunito');
+
+    @keyframes slideNorthEast {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 40vw calc(-40vw * 556/550);
+      }
+    }
+
+    body {
+      color: white;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, rgb(2, 192, 255), rgb(136, 3, 197));
+      background-attachment: fixed;
+      background-size: cover;
+      display: flex;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .background-image {
+      background-image: url("https://ac.blooket.com/dashboard/65a43218fd1cabe52bdf1cda34613e9e.png");
+      display: block;
+      height: 200%;
+      width: 200%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-size: 40vw calc(40vw * 556/550);
+      background-repeat: repeat;
+      visibility: visible;
+      opacity: 0.175;
+      pointer-events: none;
+      transform: rotate(15deg);
+      animation: slideNorthEast 35s linear infinite;
+      z-index: -1;
+    }
+
+    #sidebar {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      font-size: 1.5rem;
+      padding: 1rem;
+      position: fixed;
+      width: 200px;
+      z-index: 1000;
+      font-family: Titan One;
+      font-weight: 100;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #home-button {
+      color: white;
+      text-decoration: none;
+      font-size: 3.5rem;
+      padding-left: 10px;
+      padding-right: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      width: 90% !important;
+    }
+
+    #sidebar>a {
+      width: 100%;
+    }
+
+    #sidebar>hr {
+      width: 100%;
+      height: 4px;
+      margin: 10px 0;
+      background: linear-gradient(to right, rgb(0, 191, 255), rgb(255, 72, 72));
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    #sidebar button {
+      background-color: rgba(255, 255, 255, 0);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-family: Titan One;
+      font-size: 1.5rem;
+      margin: 6px 0;
+      padding: 10px 20px;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #sidebar button:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #content {
+      font-family: Titan One;
+      font-weight: 100;
+      font-size: 1.5rem;
+      text-decoration: none;
+      margin-left: 233px;
+      /* Adjust this value based on the width of the sidebar */
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    #content button {
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(10px);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-family: Titan One;
+      font-size: 200%;
+      margin: 6px 0;
+      padding: 10px 20px;
+      cursor: pointer;
+      width: 33%;
+      height: 100px;
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #content button:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #custom-url-textarea::placeholder {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    #custom-url {
+      height: 150px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 15px;
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #custom-url-textarea {
+      width: 98.35%;
+      height: 60px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(3px);
+      font-family: inherit;
+      font-size: 35px;
+      color: white;
+      resize: none;
+      white-space: nowrap;
+      overflow-y: hidden;
+      transition: background-color 0.3s ease;
+    }
+
+    #custom-url-textarea:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    #redirect-button {
+      width: 90%;
+      flex-grow: 1;
+      margin: 0 !important;
+    }
+
+    h1,
+    dt {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background-image"></div>
+  <div id="sidebar">
+    <a id="home-button" href="#">Sneek</a>
+    <hr>
+    <a href="#custom-url"><button>Search / Custom URL</button></a>
+    <a href="#useful-websites"><button>Useful websites</button></a>
+  </div>
+
+  <div id="content">
+
+    <div id="custom-url">
+      <textarea placeholder="Enter URL or search term" id="custom-url-textarea"></textarea>
+      <button id="redirect-button" style="width: 100% !important;">Search/Open URL</button>
+    </div>
+
+    <h1 id="useful-websites">Useful websites</h1>
+    <a href="https://www.youtube.com/"><button>Youtube</button></a>
+    <a href="https://www.chatgpt.com/"><button>ChatGPT</button></a>
+    <a href="https://www.google.com/"><button>Google</button></a>
+
+  </div>
+
+  <script>
+    function handleRedirect() {
+      const input = document.getElementById('custom-url-textarea').value.trim();
+
+      if (input) {
+        const isUrl = /^[^\s]+\.[^\s]+$/.test(input);
+
+        if (isUrl) {
+          window.location.href = input.startsWith('http') ? input : 'https://' + input;
+        } else {
+          window.location.href = `https://www.google.com/search?q=${encodeURIComponent(input)}`;
+        }
+      }
+    }
+
+    // Only handle Enter key
+    document.getElementById('custom-url-textarea').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        e.stopPropagation();
+        handleRedirect();
+      }
+    });
+
+    // Dedicated button click handler
+    document.getElementById('redirect-button').addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      handleRedirect();
+    });
+
+    // Prevent any event bubbling from textarea
+    document.getElementById('custom-url-textarea').addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  </script>
+</body>
+
+</html>
