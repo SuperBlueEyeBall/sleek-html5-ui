@@ -28,20 +28,29 @@
       background-size: cover;
       display: flex;
       overflow-x: hidden;
+      width: 100vw;
       min-height: 100vh;
+      max-height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
       position: relative;
+      font-size: clamp(14px, 2vw, 18px);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 2rem;
+      /* Adds padding to scroll targets */
     }
 
     .background-image {
       background-image: url("https://ac.blooket.com/dashboard/65a43218fd1cabe52bdf1cda34613e9e.png");
       display: block;
-      height: 200%;
-      width: 200%;
+      height: 150vh;
+      width: 150vw;
       position: fixed;
-      margin-left: -1000px;
-      margin-top: -300px;
-      top: 0;
-      left: 0;
+      top: -25vh;
+      left: -25vw;
       background-size: 40vw calc(40vw * 556/550);
       background-repeat: repeat;
       visibility: visible;
@@ -62,15 +71,36 @@
       font-size: 1.5rem;
       padding: 1rem;
       position: fixed;
-      width: 200px;
+      width: min(200px, 80vw);
+      height: 100vh;
+      margin: 0;
       z-index: 1000;
       font-family: Titan One;
+      font-size: clamp(1rem, 3vw, 1.5rem);
       font-weight: 100;
       color: white;
       text-decoration: none;
       display: flex;
       flex-direction: column;
       align-items: center;
+      transform: translateX(0);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+    }
+
+    @media (max-width: 768px) {
+      #sidebar {
+        transform: translateX(-100%);
+      }
+
+      #sidebar.active {
+        transform: translateX(0);
+      }
+
+      #content {
+        margin-left: 0;
+        padding: 4vw;
+      }
     }
 
     #home-button {
@@ -81,6 +111,7 @@
       padding-right: 10px;
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      font-size: clamp(2rem, 5vw, 3.5rem);
       width: 90% !important;
     }
 
@@ -125,10 +156,17 @@
       font-weight: 100;
       font-size: 1.5rem;
       text-decoration: none;
-      margin-left: 233px;
+      margin-left: max(235px, 15.4vw);
+      transition: margin-left 0.3s ease;
       /* Adjust this value based on the width of the sidebar */
-      padding: 20px;
+      padding: 1rem;
       flex-grow: 1;
+      height: auto;
+      min-height: 0;
+      max-width: 100%;
+      overflow-y: auto;
+      padding-bottom: 2rem;
+      overflow-x: hidden;
     }
 
     #content button {
@@ -139,12 +177,12 @@
       border-radius: 10px;
       color: white;
       font-family: Titan One;
-      font-size: 200%;
       margin: 6px 0;
       padding: 10px 20px;
       cursor: pointer;
-      width: 33%;
-      height: 100px;
+      width: 100%;
+      height: min(100px, 15vh);
+      font-size: clamp(1.2rem, 4vw, 2rem);
       transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -159,32 +197,83 @@
     }
 
     #custom-url {
-      height: 150px;
       background-color: rgba(255, 255, 255, 0.2);
       border-radius: 10px;
-      padding: 15px;
+      grid-column: 1 / -1;
+      height: 26vh;
+      padding: 1vw;
       backdrop-filter: blur(4px);
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 10px;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     #custom-url-textarea {
-      width: 98.35%;
-      height: 60px;
-      padding: 10px;
+      width: 100%;
+      min-height: 3rem;
       border: none;
       border-radius: 10px;
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(3px);
       font-family: inherit;
-      font-size: 35px;
+      font-size: clamp(1rem, 3vw, 2rem);
+      padding-left: 0.5rem;
       color: white;
       resize: none;
       white-space: nowrap;
       overflow-y: hidden;
       transition: background-color 0.3s ease;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Add new hamburger menu for mobile */
+    #menu-toggle {
+      display: none;
+      position: fixed;
+      bottom: 0.5rem;
+      left: 0.5rem;
+      z-index: 2000;
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: none;
+      border-radius: 10px;
+      padding: 0.8rem;
+      cursor: pointer;
+      color: white;
+      font-family: Titan One;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #menu-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      #menu-toggle {
+        display: block;
+      }
+
+      #content {
+        margin-left: 0;
+        transition: margin-left 0.3s ease;
+      }
+
+      #menu-toggle.sidebar-open {
+        left: calc(min(200px, 80vw) - 1.4rem);
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      #content.sidebar-open {
+        margin-left: min(233px, 80vw);
+      }
     }
 
     #custom-url-textarea:hover {
@@ -195,9 +284,25 @@
       width: 90%;
       flex-grow: 1;
       margin: 0 !important;
+      font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+      white-space: normal;
+      word-wrap: break-word;
+      padding: 0.8rem;
+      line-height: 1.2;
+      min-height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
-    h1,
+    h1 {
+      font-size: clamp(1.5rem, 40vw, 2.5rem);
+      word-wrap: break-word;
+      width: 100%;
+      text-align: center;
+    }
+
     dt {
       text-align: center;
     }
@@ -206,9 +311,9 @@
 
 <body>
   <div class="background-image"></div>
+  <button id="menu-toggle">☰</button>
   <div id="sidebar">
     <a id="home-button" href="#">Sneek</a>
-    <hr>
     <a href="#custom-url"><button>Search / Custom URL</button></a>
     <a href="#useful-websites"><button>Useful websites</button></a>
   </div>
@@ -262,6 +367,59 @@
     document.getElementById('custom-url-textarea').addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
+    });
+
+    // Remove all existing menu toggle event listeners and replace with:
+    document.getElementById('menu-toggle').addEventListener('click', function (e) {
+      e.stopPropagation();
+      const sidebar = document.getElementById('sidebar');
+      const content = document.getElementById('content');
+      const menuToggle = document.getElementById('menu-toggle');
+
+      sidebar.classList.toggle('active');
+      content.classList.toggle('sidebar-open');
+      menuToggle.classList.toggle('sidebar-open');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768) {
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+        const menuToggle = document.getElementById('menu-toggle');
+
+        if (!sidebar.contains(e.target) && e.target !== menuToggle) {
+          sidebar.classList.remove('active');
+          content.classList.remove('sidebar-open');
+          menuToggle.classList.remove('sidebar-open');
+        }
+      }
+    });
+
+    // Add this to your existing script section
+    document.querySelectorAll('#sidebar a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+
+          // Close sidebar on mobile after clicking
+          if (window.innerWidth <= 768) {
+            const sidebar = document.getElementById('sidebar');
+            const content = document.getElementById('content');
+            const menuToggle = document.getElementById('menu-toggle');
+
+            sidebar.classList.remove('active');
+            content.classList.remove('sidebar-open');
+            menuToggle.classList.remove('sidebar-open');
+          }
+        }
+      });
     });
   </script>
 </body>
